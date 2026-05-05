@@ -22,6 +22,55 @@
 
 === 解答
 
+講義資料のレポート課題に関する補足式により、
+
+$
+  dv(theta_1, t) & = omega + K_(12) sin(theta_1 - theta_2) + K_(13) sin(theta_1 - theta_3) \
+  dv(theta_2, t) & = omega + K_(12) sin(theta_2 - theta_1) + K_(23) sin(theta_2 - theta_3) \
+  dv(theta_3, t) & = omega + K_(13) sin(theta_3 - theta_1) + K_(23) sin(theta_3 - theta_2)
+$
+
+である。
+
+ここで、
+
+$
+  theta_2 - theta_3 & = theta_2 - theta_1 + theta_1 - theta_3 \
+                    & = -(theta_1 - theta_2) + (theta_1 - theta_3) \
+                    & = - phi_(12) + phi_(13) \
+                    & = phi_(13) - phi_(12) \
+  theta_3 - theta_2 & = theta_(12) - theta_(13)
+$
+
+である。
+
+したがって、
+
+$
+  dv(phi_12, t) = dv(theta_1, t) - dv(theta_2, t)
+$
+
+より、
+
+$
+  dv(phi_12, t) = 2 K_12 sin phi_12 + K_13 sin phi_13 + K_23 sin(phi_12 - phi_13)
+$
+
+が得られる。
+同様に、
+
+$
+  dv(phi_13, t) = dv(phi_1, t) - dv(phi_3, t)
+$
+
+より、
+
+$
+  dv(phi_13, t) = K_12 sin phi_12 + 2 K_13 sin phi_13 - K_23 sin(phi_12 - phi_13)
+$
+
+が得られる。
+
 == 2-2
 
 $K_12 = K_23 = K$ かつ $K_13 = 0$ のとき、$(phi_12, phi_13) = (pi, 0)$ が安定平衡点になることを示せ。
