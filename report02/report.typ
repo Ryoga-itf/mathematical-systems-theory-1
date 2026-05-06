@@ -1,6 +1,6 @@
 #import "../template.typ": *
 #import "@preview/tenv:0.1.2": parse_dotenv
-#import "@preview/physica:0.9.2": *
+#import "@preview/physica:0.9.8": *
 #import "@preview/cetz:0.5.0"
 
 #let env = parse_dotenv(read("../.env"))
@@ -13,6 +13,7 @@
   date: "2026 年 4 月 23 日",
 )
 
+#set math.mat(gap: 0.5em)
 #set footnote(numbering: sym.dagger + "1")
 
 == 2-1.
@@ -76,6 +77,82 @@ $
 $K_12 = K_23 = K$ かつ $K_13 = 0$ のとき、$(phi_12, phi_13) = (pi, 0)$ が安定平衡点になることを示せ。
 
 === 解答
+
+前問 2-1 の結果に $K_12 = K_23 = K, K_13 = 0$ を代入すると、
+
+$
+  dv(phi_12, t) & = 2 K sin phi_12 + K sin (phi_12 - phi_13) \
+  dv(phi_13, t) & = K sin phi_12 - K sin (phi_12 - phi_13)
+$
+
+となる。
+
+ここで
+
+$
+  f(phi_12, phi_13) & = 2 K sin phi_12 + K sin (phi_12 - phi_13) \
+  g(phi_12, phi_13) & = K sin phi_12 - K sin (phi_12 - phi_13)
+$
+
+とおく。
+講義資料の手順によって平衡点 $(phi_12, phi_13) = (pi, 0)$ について確認する。
+さっそくこれを代入すると、
+
+$
+  sin pi = 0, space sin(pi - 0) = sin pi = 0
+$
+
+であるから、
+
+$
+  f(pi, 0) = 0, space g(pi, 0) = 0
+$
+
+であり、確かに平衡点である。
+
+次にヤコビ行列を求める。
+
+$
+  J =
+  mat(pdv(f, phi_12), pdv(f, phi_13); pdv(g, phi_12), pdv(g, phi_13))
+$
+
+各成分は、
+
+$
+  pdv(f, phi_12) & = 2 K cos phi_12 + K cos(phi_12 - phi_13) \
+  pdv(f, phi_13) & = -K cos(phi_12 - phi_13) \
+  pdv(g, phi_12) & = K cos phi_12 - K cos(phi_12 - phi_13) \
+  pdv(g, phi_13) & = K cos(phi_12 - phi_13)
+$
+
+である。
+
+$(phi_12, phi_13) = (pi, 0)$ では $cos pi = -1, space cos(pi - 0) = cos pi = -1$
+
+なので、
+
+$
+  J =
+  mat(-3K, K; 0, -K)
+$
+
+となる。
+これは、上三角行列なので、固有値は対角成分から
+
+$
+  lambda_1 = -3K, space lambda_2 = -K
+$
+
+である。
+
+$K > 0$ より、
+
+$
+  lambda_1 < 0, space lambda_2 < 0
+$
+
+だから、$(phi_12, phi_13) = (pi, 0)$ は安定平衡点である。
 
 == 2-3
 
